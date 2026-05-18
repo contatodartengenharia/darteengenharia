@@ -26,21 +26,13 @@ export function Hero() {
         />
       </div>
 
-      {/* Gradiente:
-          mobile  → overlay quase sólido (texto legível sobre a foto)
-          desktop → gradiente horizontal cream → transparente */}
+      {/* Gradiente vertical — mobile only */}
       <div
-        className="absolute inset-0 pointer-events-none z-[1]"
-        style={{
-          background: [
-            /* mobile: cream sólido nos 55% inferiores, suave acima */
-            'linear-gradient(to bottom, rgba(244,239,232,.55) 0%, rgba(244,239,232,.88) 40%, #F4EFE8 65%)',
-            /* desktop (sobrescreve via media query inline não disponível — uso ambas sobrepostas) */
-          ].join(', '),
-        }}
+        className="absolute inset-0 pointer-events-none z-[1] md:hidden"
+        style={{ background: 'linear-gradient(to bottom, rgba(244,239,232,.5) 0%, rgba(244,239,232,.85) 38%, #F4EFE8 62%)' }}
         aria-hidden
       />
-      {/* Gradiente horizontal apenas em md+ */}
+      {/* Gradiente horizontal — desktop only */}
       <div
         className="absolute inset-0 pointer-events-none z-[1] hidden md:block"
         style={{
