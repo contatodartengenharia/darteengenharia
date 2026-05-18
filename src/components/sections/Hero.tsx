@@ -10,48 +10,28 @@ const WA_ICON = (
 
 export function Hero() {
   return (
-    <section
-      id="inicio"
-      className="relative overflow-hidden bg-cream"
-      style={{ height: 'clamp(480px, 74vh, 780px)' }}
-      aria-label="Seção inicial"
-    >
-      {/* Imagem — full width em mobile, 62% em desktop */}
-      <div className="absolute top-0 right-0 w-full md:w-[62%] h-full">
-        <img
-          src={heroBg}
-          alt="Fachada de imóvel residencial moderno"
-          className="w-full h-full object-cover object-[center_35%]"
-          fetchPriority="high"
-        />
-      </div>
+    <section id="inicio" aria-label="Seção inicial">
 
-      {/* Gradiente vertical — mobile only */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[1] md:hidden"
-        style={{ background: 'linear-gradient(to bottom, rgba(244,239,232,.5) 0%, rgba(244,239,232,.85) 38%, #F4EFE8 62%)' }}
-        aria-hidden
-      />
-      {/* Gradiente horizontal — desktop only */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[1] hidden md:block"
-        style={{
-          background: 'linear-gradient(to right, #F4EFE8 0%, #F4EFE8 28%, rgba(244,239,232,.96) 40%, rgba(244,239,232,.72) 52%, rgba(244,239,232,.15) 68%, transparent 82%)',
-        }}
-        aria-hidden
-      />
+      {/* ── MOBILE: imagem acima, texto abaixo ── */}
+      <div className="md:hidden">
+        {/* Foto */}
+        <div className="w-full h-[52vw] min-h-[220px] max-h-[320px] overflow-hidden">
+          <img
+            src={heroBg}
+            alt="Fachada de imóvel residencial moderno"
+            className="w-full h-full object-cover object-[center_35%]"
+            fetchPriority="high"
+          />
+        </div>
 
-      {/* Conteúdo */}
-      <div className="container-app relative z-[2] h-full flex items-end md:items-center pb-10 md:pb-0 pt-4">
-        <div className="max-w-[480px]">
-
-          {/* Título */}
+        {/* Texto sobre fundo cream sólido */}
+        <div className="bg-cream px-6 py-8">
           <motion.h1
             variants={heroTitle}
             initial="hidden"
             animate="visible"
-            className="font-display text-navy leading-[1.0] mb-[0.6rem]"
-            style={{ fontSize: 'clamp(2.6rem,5.5vw,4.8rem)', letterSpacing: '0.01em' }}
+            className="font-display text-navy leading-[1.0] mb-[0.5rem]"
+            style={{ fontSize: 'clamp(2.2rem,9vw,3rem)' }}
           >
             {['DARTE', 'Engenharia Civil'].map((word, i) => (
               <span key={i} className="block overflow-hidden">
@@ -60,34 +40,22 @@ export function Hero() {
             ))}
           </motion.h1>
 
-          {/* Gold line */}
           <motion.span
             className="gold-line"
-            variants={lineGrow}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.6 }}
+            variants={lineGrow} initial="hidden" animate="visible"
+            transition={{ delay: 0.5 }}
             aria-hidden
           />
 
-          {/* Subtítulo */}
           <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.7 }}
-            className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-[#2C2C2C] mb-[1.8rem] leading-[1.7]"
+            variants={fadeUp} initial="hidden" animate="visible"
+            transition={{ delay: 0.6 }}
+            className="text-[0.68rem] font-medium tracking-[0.2em] uppercase text-[#2C2C2C] mb-6 leading-[1.7]"
           >
             Engenharia com técnica,<br />controle e propósito
           </motion.p>
 
-          {/* CTA */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.85 }}
-          >
+          <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.75 }}>
             <a
               href="https://wa.me/5527999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
               target="_blank" rel="noopener noreferrer"
@@ -99,6 +67,77 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* ── DESKTOP: split layout com gradiente horizontal ── */}
+      <div
+        className="hidden md:block relative overflow-hidden bg-cream"
+        style={{ height: 'clamp(480px, 74vh, 780px)' }}
+      >
+        {/* Imagem direita */}
+        <div className="absolute top-0 right-0 w-[62%] h-full">
+          <img
+            src={heroBg}
+            alt="Fachada de imóvel residencial moderno"
+            className="w-full h-full object-cover object-[center_35%]"
+            fetchPriority="high"
+          />
+        </div>
+
+        {/* Gradiente cream → transparente */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[1]"
+          style={{
+            background: 'linear-gradient(to right, #F4EFE8 0%, #F4EFE8 28%, rgba(244,239,232,.96) 40%, rgba(244,239,232,.72) 52%, rgba(244,239,232,.15) 68%, transparent 82%)',
+          }}
+          aria-hidden
+        />
+
+        {/* Conteúdo */}
+        <div className="container-app relative z-[2] h-full flex items-center">
+          <div className="max-w-[480px]">
+            <motion.h1
+              variants={heroTitle}
+              initial="hidden"
+              animate="visible"
+              className="font-display text-navy leading-[1.0] mb-[0.6rem]"
+              style={{ fontSize: 'clamp(2.6rem,5.5vw,4.8rem)', letterSpacing: '0.01em' }}
+            >
+              {['DARTE', 'Engenharia Civil'].map((word, i) => (
+                <span key={i} className="block overflow-hidden">
+                  <motion.span className="block" variants={heroWord}>{word}</motion.span>
+                </span>
+              ))}
+            </motion.h1>
+
+            <motion.span
+              className="gold-line"
+              variants={lineGrow} initial="hidden" animate="visible"
+              transition={{ delay: 0.6 }}
+              aria-hidden
+            />
+
+            <motion.p
+              variants={fadeUp} initial="hidden" animate="visible"
+              transition={{ delay: 0.7 }}
+              className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-[#2C2C2C] mb-[1.8rem] leading-[1.7]"
+            >
+              Engenharia com técnica,<br />controle e propósito
+            </motion.p>
+
+            <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.85 }}>
+              <a
+                href="https://wa.me/5527999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
+                target="_blank" rel="noopener noreferrer"
+                className="btn-navy"
+              >
+                {WA_ICON}
+                Solicitar Orçamento
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
     </section>
   )
 }
