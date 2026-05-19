@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion'
 import { heroTitle, heroWord, fadeUp, lineGrow } from '@/animations/variants'
-import heroBg from '@/assets/images/hero-bg.jpg'
+import heroBg768  from '@/assets/images/hero-bg-768.webp'
+import heroBg1280 from '@/assets/images/hero-bg-1280.webp'
+import heroBg1920 from '@/assets/images/hero-bg-1920.webp'
+import heroBgFallback from '@/assets/images/hero-bg.jpg'
+
+const HERO_SRCSET = `${heroBg768} 768w, ${heroBg1280} 1280w, ${heroBg1920} 1920w`
 
 const WA_ICON = (
   <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -17,7 +22,9 @@ export function Hero() {
         {/* Foto */}
         <div className="w-full h-[52vw] min-h-[220px] max-h-[320px] overflow-hidden">
           <img
-            src={heroBg}
+            src={heroBgFallback}
+            srcSet={HERO_SRCSET}
+            sizes="100vw"
             alt="Fachada de imóvel residencial moderno"
             className="w-full h-full object-cover object-[center_35%]"
             fetchPriority="high"
@@ -76,7 +83,9 @@ export function Hero() {
         {/* Imagem direita */}
         <div className="absolute top-0 right-0 w-[62%] h-full">
           <img
-            src={heroBg}
+            src={heroBgFallback}
+            srcSet={HERO_SRCSET}
+            sizes="62vw"
             alt="Fachada de imóvel residencial moderno"
             className="w-full h-full object-cover object-[center_35%]"
             fetchPriority="high"

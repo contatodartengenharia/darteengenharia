@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { fadeUp, slideLeft, lineGrow } from '@/animations/variants'
-import ctaImg from '@/assets/images/cta-interior.jpg'
+import ctaImg from '@/assets/images/cta-interior.webp'
 
 const WA_ICON = (
   <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
