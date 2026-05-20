@@ -11,14 +11,25 @@ import iconInspecao    from '@/assets/images/icon-inspecao-predial.png'
 import iconConsultoria from '@/assets/images/icon-consultoria-reforma.png'
 import iconOrcamento   from '@/assets/images/icon-orcamento-obra.png'
 import iconRegulariza  from '@/assets/images/icon-regularizacao-imoveis.png'
+import {
+  IconVistoriaImoveis,
+  IconAcompanhamentoObras,
+  IconInspecaoPredial,
+  IconConsultoriaReforma,
+  IconOrcamentoObra,
+  IconRegularizacaoImoveis,
+} from '@/assets/icons/serviceIcons'
 
-const ICONS = [
-  iconVistoria,
-  iconAcompanha,
-  iconInspecao,
-  iconConsultoria,
-  iconOrcamento,
-  iconRegulariza,
+/* PNG — cards fechados (fundo claro) */
+const PNG_ICONS = [
+  iconVistoria, iconAcompanha, iconInspecao,
+  iconConsultoria, iconOrcamento, iconRegulariza,
+]
+
+/* SVG — card expandido (fundo navy, herda text-white) */
+const SVG_ICONS = [
+  IconVistoriaImoveis, IconAcompanhamentoObras, IconInspecaoPredial,
+  IconConsultoriaReforma, IconOrcamentoObra, IconRegularizacaoImoveis,
 ]
 
 const WA_MSG = (title: string) =>
@@ -66,7 +77,8 @@ export function Services() {
           {/* Card expandido */}
           <AnimatePresence mode="popLayout">
             {selected && (() => {
-              const Icon = ICONS[SERVICES.findIndex(s => s.id === selected.id)]
+              const idx = SERVICES.findIndex(s => s.id === selected.id)
+              const SvgIcon = SVG_ICONS[idx]
               return (
                 <motion.article
                   key={`${selected.id}-expanded`}
@@ -91,8 +103,8 @@ export function Services() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-12 items-start">
                       <div className="flex flex-col gap-4">
-                        <div className="w-14 h-14 flex-shrink-0">
-                          <img src={Icon} alt="" className="w-full h-full object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.7 }} />
+                        <div className="w-14 h-14 flex-shrink-0 text-white/70">
+                          <SvgIcon className="w-full h-full" />
                         </div>
                         <div>
                           <h3 className="font-display text-white text-[1.6rem] lg:text-[2rem] font-normal leading-[1.2] max-w-[280px]">
@@ -143,7 +155,7 @@ export function Services() {
 
           {/* Cards normais */}
           {(selectedId ? others : SERVICES).map((svc) => {
-            const Icon = ICONS[SERVICES.findIndex(s => s.id === svc.id)]
+            const PngIcon = PNG_ICONS[SERVICES.findIndex(s => s.id === svc.id)]
             const isOther = !!selectedId
 
             return (
@@ -183,7 +195,7 @@ export function Services() {
                                transition-transform duration-[320ms] ease-spring group-hover:-translate-y-1"
                     aria-hidden
                   >
-                    <img src={Icon} alt="" className="w-full h-full object-contain brightness-[1.05] group-hover:brightness-100 transition-[filter] duration-300" />
+                    <img src={PngIcon} alt="" className="w-full h-full object-contain brightness-[1.05] group-hover:brightness-100 transition-[filter] duration-300" />
                   </div>
 
                   <div className="flex-1 min-w-0">
