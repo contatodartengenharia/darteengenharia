@@ -31,7 +31,7 @@ export function Footer() {
           <a href="#inicio" onClick={e => handleNav(e, '#inicio')} className="inline-flex items-center gap-[0.65rem]">
             <img src={logoImg} alt="" width={38} height={38} className="rounded-[5px] opacity-85 object-contain" aria-hidden />
             <div className="leading-[1.15]">
-              <span className="block font-display text-[1.1rem] font-semibold tracking-[0.12em] uppercase text-white">D'Arte</span>
+              <span className="block font-display text-[1.1rem] font-semibold tracking-[0.04em] text-white">D'Arte</span>
               <span className="block text-[0.52rem] tracking-[0.18em] uppercase text-white/40">Engenharia Civil</span>
             </div>
           </a>

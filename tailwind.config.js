@@ -5,23 +5,23 @@ export default {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#1C3A6E',
-          light:   '#2B4F96',
-          dark:    '#122450',
+          DEFAULT: '#08386F',
+          light:   '#0D52A0',
+          dark:    '#04346D',
         },
         gold: {
-          DEFAULT: '#C8A96A',
-          light:   '#D9BE8A',
-          dark:    '#A8893A',
+          DEFAULT: '#C89B45',
+          light:   '#D9B46A',
+          dark:    '#A47C2E',
         },
-        cream:  '#F4EFE8',
-        sand:   '#EDE6DA',
-        border: '#E0D8CE',
+        cream:  '#FCF7F3',
+        sand:   '#F3EBE2',
+        border: '#E8DECE',
         muted:  '#888888',
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        body:    ['Inter', 'system-ui', 'sans-serif'],
+        body:    ['Montserrat', 'system-ui', 'sans-serif'],
       },
       transitionTimingFunction: {
         'out-expo': 'cubic-bezier(0.16,1,0.3,1)',

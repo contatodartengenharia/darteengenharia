@@ -51,6 +51,41 @@
 - **Honeypot**: campo `_gotcha` oculto no `ContactForm.tsx` — Formspree ignora submissões de bots que o preenchem
 - Commit `55cf14a` pusheado para `main` → redeploy automático na Vercel
 
+## Fase 9 — Redesign Visual (2026-05-20)
+
+### Seção Experiência (nova)
+- Criado `Experience.tsx` com 3 fotos de projetos reais copiadas de `ProjetoJu/Experiencia/`
+- Fotos: `exp-sabor-da-terra.jpg`, `exp-cobertura-praia-costa.jpg`, `exp-area-lazer.jpg`
+- Animações: `scaleIn` + `staggerContainer` + hover scale na imagem e translate na seta
+
+### Serviços — atualização completa
+- 6 novos serviços: Vistoria, Acompanhamento, Inspeção Predial, Consultoria p/ Obras, Orçamento de Obra, Regularização
+- Título da seção: "Soluções técnicas e serviços"
+- Layout dos cards: ícone+título na mesma linha com `+` à direita (antes era coluna com `→` embaixo)
+- 6 ícones SVG redesenhados para bater com referência visual fornecida pelo cliente:
+  - `IconAcompanhamentoObras`: capacete de obra (cúpula + aba + fita interna)
+  - `IconConsultoriaReforma`: rolo de planta + lápis diagonal
+  - `IconOrcamentoObra`: documento + moeda $ + calculadora
+  - `IconRegularizacaoImoveis`: documento + casa + selo de verificação
+
+### Estrutura da página
+- Removidas seções: CTA (`#sobre`) e ContactBar (branca)
+- Navbar: "Sobre" → "Experiência" (`#experiencia`)
+- Footer redesenhado: 3 colunas — logo | texto CTA | contatos (tel, email, local, IG)
+
+### Contato real inserido
+- Telefone: (27) 99796-7523 | Email: contato@darteeng.com.br | IG: @darte.engenharia
+
+### Design tokens corrigidos
+- Navy: `#1C3A6E` → `#08386F` | Rodapé: `#122450` → `#04346D`
+- Gold: `#C8A96A` → `#C89B45` | Cream: `#F4EFE8` → `#FCF7F3`
+- Fonte body/menu: **Inter** → **Montserrat** (Google Fonts atualizado)
+
+### Logo
+- Navbar e Footer: "DARTE" (uppercase) → "D'Arte" (capitalização correta, sem `uppercase` CSS)
+
+---
+
 ## Fase 8 — Performance & Core Web Vitals
 
 - Geradas versões webp responsivas do hero: `hero-bg-768.webp` (64KB), `hero-bg-1280.webp` (178KB), `hero-bg-1920.webp` (420KB) — original era 640KB jpg

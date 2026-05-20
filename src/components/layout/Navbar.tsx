@@ -49,7 +49,7 @@ export function Navbar() {
           <a href="#inicio" onClick={e => handleNav(e, '#inicio')} className="flex items-center gap-[0.65rem]">
             <img src={logoImg} alt="" width={38} height={38} className="rounded-md object-contain" aria-hidden />
             <div className="leading-[1.1]">
-              <span className="block font-display text-[1.15rem] font-semibold text-navy tracking-[0.12em] uppercase">DARTE</span>
+              <span className="block font-display text-[1.15rem] font-semibold text-navy tracking-[0.04em]">D'Arte</span>
               <span className="block text-[0.55rem] font-medium tracking-[0.18em] uppercase text-muted">Engenharia Civil</span>
             </div>
           </a>
