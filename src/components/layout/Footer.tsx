@@ -38,7 +38,7 @@ export function Footer() {
 
           {/* Col 2 — Texto CTA */}
           <p className="text-[0.85rem] text-white/55 leading-[1.75] md:text-center">
-            Precisa de suporte técnico<br className="hidden md:block" />
+            Precisa de suporte técnico<span className="md:hidden"> </span><br className="hidden md:block" />
             para seu imóvel ou obra?{' '}
             <a
               href={CONTACT.whatsappMsg}
