@@ -40,7 +40,7 @@ export function Hero() {
             className="font-display text-navy leading-[1.0] mb-[0.5rem]"
             style={{ fontSize: 'clamp(2.2rem,9vw,3rem)' }}
           >
-            {["D'Arte", 'Engenharia Civil'].map((word, i) => (
+            {["D'Arte", 'Engenharia'].map((word, i) => (
               <span key={i} className="block overflow-hidden">
                 <motion.span className="block" variants={heroWord}>{word}</motion.span>
               </span>
@@ -111,7 +111,7 @@ export function Hero() {
               className="font-display text-navy leading-[1.0] mb-[0.6rem]"
               style={{ fontSize: 'clamp(2.6rem,5.5vw,4.8rem)', letterSpacing: '0.01em' }}
             >
-              {["D'Arte", 'Engenharia Civil'].map((word, i) => (
+              {["D'Arte", 'Engenharia'].map((word, i) => (
                 <span key={i} className="block overflow-hidden">
                   <motion.span className="block" variants={heroWord}>{word}</motion.span>
                 </span>
