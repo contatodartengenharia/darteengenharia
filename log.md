@@ -51,6 +51,16 @@
 - **Honeypot**: campo `_gotcha` oculto no `ContactForm.tsx` — Formspree ignora submissões de bots que o preenchem
 - Commit `55cf14a` pusheado para `main` → redeploy automático na Vercel
 
+## Fase 10 — Polimento de Ícones e Logos (2026-05-20)
+
+- Logos PNG reais do cliente (logo1–6.png) substituíram os SVGs desenhados manualmente
+- Cards fechados: PNG com `brightness(1.05)` → fundo cream vira branco; hover volta a `brightness(1.0)`
+- Card expandido (navy): PNG dentro de badge `bg-white/10 rounded-xl` — mesma logo de fora
+- Hero: "DARTE" → "D'Arte", gradiente hardcoded `#F4EFE8` → `#FCF7F3`, WA placeholder → real
+- Navbar/Footer: "DARTE" uppercase → "D'Arte" (removido `uppercase` CSS e `tracking` excessivo)
+
+---
+
 ## Fase 9 — Redesign Visual (2026-05-20)
 
 ### Seção Experiência (nova)

@@ -12,7 +12,8 @@
 - [x] Serviços atualizados: Vistoria, Acompanhamento, Inspeção Predial, Consultoria, Orçamento, Regularização
 - [x] **Seção Experiência** — 3 fotos de projetos reais (Sabor da Terra, Cobertura PdC, Área de Lazer)
 - [x] Navbar: links Início / Serviços / Experiência / Contato com smooth scroll e active-link
-- [x] Logo "D'Arte" com capitalização correta em navbar e footer
+- [x] Logo "D'Arte" com capitalização correta em navbar, footer e hero
+- [x] Logos PNG reais do cliente integradas nos cards de serviços (fundo branco via brightness, badge no expandido)
 - [x] Footer redesenhado — 3 colunas: logo | texto CTA | contatos reais
 - [x] Contato real integrado: (27) 99796-7523 · contato@darteeng.com.br · @darte.engenharia
 - [x] Formulário de contato com React Hook Form + Zod + Sonner (aguardando ID Formspree)
