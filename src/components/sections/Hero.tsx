@@ -40,7 +40,7 @@ export function Hero() {
             className="font-display text-navy leading-[1.0] mb-[0.5rem]"
             style={{ fontSize: 'clamp(2.2rem,9vw,3rem)' }}
           >
-            {['DARTE', 'Engenharia Civil'].map((word, i) => (
+            {["D'Arte", 'Engenharia Civil'].map((word, i) => (
               <span key={i} className="block overflow-hidden">
                 <motion.span className="block" variants={heroWord}>{word}</motion.span>
               </span>
@@ -64,7 +64,7 @@ export function Hero() {
 
           <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.75 }}>
             <a
-              href="https://wa.me/5527999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
+              href="https://wa.me/5527997967523?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
               target="_blank" rel="noopener noreferrer"
               className="btn-navy"
             >
@@ -96,7 +96,7 @@ export function Hero() {
         <div
           className="absolute inset-0 pointer-events-none z-[1]"
           style={{
-            background: 'linear-gradient(to right, #F4EFE8 0%, #F4EFE8 28%, rgba(244,239,232,.96) 40%, rgba(244,239,232,.72) 52%, rgba(244,239,232,.15) 68%, transparent 82%)',
+            background: 'linear-gradient(to right, #FCF7F3 0%, #FCF7F3 28%, rgba(252,247,243,.96) 40%, rgba(252,247,243,.72) 52%, rgba(252,247,243,.15) 68%, transparent 82%)',
           }}
           aria-hidden
         />
@@ -111,7 +111,7 @@ export function Hero() {
               className="font-display text-navy leading-[1.0] mb-[0.6rem]"
               style={{ fontSize: 'clamp(2.6rem,5.5vw,4.8rem)', letterSpacing: '0.01em' }}
             >
-              {['DARTE', 'Engenharia Civil'].map((word, i) => (
+              {["D'Arte", 'Engenharia Civil'].map((word, i) => (
                 <span key={i} className="block overflow-hidden">
                   <motion.span className="block" variants={heroWord}>{word}</motion.span>
                 </span>
@@ -135,7 +135,7 @@ export function Hero() {
 
             <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.85 }}>
               <a
-                href="https://wa.me/5527999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
+                href="https://wa.me/5527997967523?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
                 target="_blank" rel="noopener noreferrer"
                 className="btn-navy"
               >
