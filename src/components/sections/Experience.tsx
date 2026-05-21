@@ -215,14 +215,14 @@ export function Experience() {
       <AnimatePresence>
         {selectedProject && (
           <>
-            {/* Backdrop */}
+            {/* Backdrop — z-[108] supera navbar (z-[100]), fica abaixo do painel (z-[110]) */}
             <motion.div
               key="backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40 bg-navy/80 backdrop-blur-sm"
+              className="fixed inset-0 z-[108] bg-navy/80 backdrop-blur-sm"
               onClick={close}
               aria-hidden
             />
@@ -232,9 +232,11 @@ export function Experience() {
                 92vh definidos pelos insets — evita área dark do backdrop abaixo.
                 Desktop (md:block): volta ao fluxo normal; altura vira auto. */}
             <div className={[
-              'fixed z-50 flex flex-col',
-              'inset-x-3 top-[4vh] bottom-[4vh]',
-              'md:block md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
+              // mobile: full-screen, acima do navbar (z-[100])
+              'fixed z-[110] flex flex-col inset-0',
+              // desktop: modal centrado, z normal
+              'md:block md:inset-auto md:z-50',
+              'md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
               'md:w-[min(860px,92vw)]',
             ].join(' ')}>
 
@@ -247,7 +249,7 @@ export function Experience() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 32, scale: 0.97 }}
                 transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-                className="flex-1 overflow-y-auto rounded-[12px] bg-white md:flex-none md:h-auto md:max-h-[78vh]"
+                className="flex-1 overflow-y-auto bg-white md:flex-none md:h-auto md:max-h-[78vh] md:rounded-[12px]"
               >
                 {/* Modal header */}
                 <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 bg-navy">
