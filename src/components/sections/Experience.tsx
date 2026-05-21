@@ -232,12 +232,13 @@ export function Experience() {
                 92vh definidos pelos insets — evita área dark do backdrop abaixo.
                 Desktop (md:block): volta ao fluxo normal; altura vira auto. */}
             <div className={[
-              // mobile: full-screen, acima do navbar (z-[100])
-              'fixed z-[110] flex flex-col inset-0',
-              // desktop: modal centrado, z normal
-              'md:block md:inset-auto md:z-50',
-              'md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
-              'md:w-[min(860px,92vw)]',
+              'fixed z-[110] flex flex-col',
+              // mobile: full-screen via longhands (evita conflito shorthand/longhand)
+              'top-0 right-0 bottom-0 left-0',
+              // desktop: modal centrado — sobrescreve cada lado explicitamente
+              'md:block md:z-50 md:w-[min(860px,92vw)]',
+              'md:top-1/2 md:left-1/2 md:right-auto md:bottom-auto',
+              'md:-translate-x-1/2 md:-translate-y-1/2',
             ].join(' ')}>
 
               <motion.div
