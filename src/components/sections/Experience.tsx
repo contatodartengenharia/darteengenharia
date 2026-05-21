@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, AnimatePresence, useInView, useMotionValue } from 'framer-motion'
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { X, Minus, Plus } from 'lucide-react'
 import { fadeUp, staggerContainer, scaleIn } from '@/animations/variants'
@@ -21,16 +21,8 @@ import cpc3 from '@/assets/images/experiencia/cobertura-praia-costa/db97f41b-d43
 import al2 from '@/assets/images/experiencia/area-lazer/47efa51c-ea75-40d9-9f07-1efe11799d88.webp'
 import al3 from '@/assets/images/experiencia/area-lazer/cd6d6404-ce3d-4a0d-9e42-228cc7d4c676.webp'
 
-interface ProjectImage {
-  src: string
-  alt: string
-}
-
-interface Project {
-  id: string
-  title: string
-  images: ProjectImage[]
-}
+interface ProjectImage { src: string; alt: string }
+interface Project { id: string; title: string; images: ProjectImage[] }
 
 const PROJECTS: Project[] = [
   {
@@ -62,8 +54,8 @@ const PROJECTS: Project[] = [
   },
 ]
 
-const ZOOM_MIN = 1
-const ZOOM_MAX = 3
+const ZOOM_MIN  = 0.5
+const ZOOM_MAX  = 3
 const ZOOM_STEP = 0.5
 
 const WA_MSG = (title: string) =>
@@ -73,28 +65,41 @@ export function Experience() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-8% 0px' })
 
-  const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [activeIdx, setActiveIdx] = useState(0)
-  const [zoomLevel, setZoomLevel] = useState(1)
+  const [selectedId, setSelectedId]   = useState<string | null>(null)
+  const [activeIdx, setActiveIdx]     = useState(0)
+  const [zoomLevel, setZoomLevel]     = useState(1)
+
+  // Motion values for drag position (compartilhados entre renders, reset explícito)
+  const dragX = useMotionValue(0)
+  const dragY = useMotionValue(0)
+
+  // Ref da área da imagem — usado como constraint de drag
+  const imgContainerRef = useRef<HTMLDivElement>(null)
 
   const selectedProject = PROJECTS.find(p => p.id === selectedId) ?? null
+
+  const resetView = useCallback(() => {
+    setZoomLevel(1)
+    dragX.set(0)
+    dragY.set(0)
+  }, [dragX, dragY])
 
   const open = useCallback((id: string) => {
     setSelectedId(id)
     setActiveIdx(0)
-    setZoomLevel(1)
-  }, [])
+    resetView()
+  }, [resetView])
 
   const close = useCallback(() => {
     setSelectedId(null)
     setActiveIdx(0)
-    setZoomLevel(1)
-  }, [])
+    resetView()
+  }, [resetView])
 
   const selectImage = useCallback((i: number) => {
     setActiveIdx(i)
-    setZoomLevel(1)
-  }, [])
+    resetView()
+  }, [resetView])
 
   const zoomIn  = useCallback(() => setZoomLevel(z => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(1))), [])
   const zoomOut = useCallback(() => setZoomLevel(z => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(1))), [])
@@ -162,9 +167,7 @@ export function Experience() {
                 <span
                   className="text-navy text-[0.9rem] transition-transform duration-300 ease-out-expo group-hover:translate-x-1 group-hover:text-gold-dark"
                   aria-hidden
-                >
-                  →
-                </span>
+                >→</span>
               </div>
             </motion.button>
           ))}
@@ -188,7 +191,7 @@ export function Experience() {
               aria-hidden
             />
 
-            {/* Positioning wrapper — separado do motion para não conflitar com transforms */}
+            {/* Positioning wrapper */}
             <div className={[
               'fixed z-50',
               'inset-x-3 top-[4vh] bottom-[4vh]',
@@ -221,41 +224,48 @@ export function Experience() {
                   </button>
                 </div>
 
-                {/* Main image */}
+                {/* ── Image area ── */}
                 <div
+                  ref={imgContainerRef}
                   className="relative bg-sand w-full overflow-hidden"
                   style={{ aspectRatio: '16/9', maxHeight: 'min(484px, 44vh)' }}
                 >
                   {/*
-                    Duas camadas separadas para evitar conflito de transform:
-                    - motion.div  → controla só opacity (crossfade entre imagens)
-                    - div interno → controla só scale (zoom)
+                    Camada única persistente: controla drag (x,y) + zoom (scale).
+                    Fica fora do AnimatePresence para não ser recriada ao trocar imagem,
+                    evitando que dragX/dragY sejam resetados pelo unmount.
+                    O AnimatePresence interno cuida apenas do crossfade (opacity).
                   */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeIdx}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.28 }}
-                      className="absolute inset-0"
-                    >
-                      <div
-                        className="w-full h-full transition-transform duration-200 ease-out origin-center"
-                        style={{ transform: `scale(${zoomLevel})` }}
-                      >
-                        <img
-                          src={selectedProject.images[activeIdx].src}
-                          alt={selectedProject.images[activeIdx].alt}
-                          className="w-full h-full object-cover select-none"
-                          draggable={false}
-                        />
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+                  <motion.div
+                    drag
+                    dragConstraints={imgContainerRef}
+                    dragElastic={0.06}
+                    dragMomentum={false}
+                    style={{ x: dragX, y: dragY }}
+                    animate={{ scale: zoomLevel }}
+                    transition={{ scale: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
+                    className={[
+                      'absolute inset-0 origin-center',
+                      zoomLevel !== 1 ? 'cursor-grab active:cursor-grabbing' : 'cursor-default',
+                    ].join(' ')}
+                  >
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={activeIdx}
+                        src={selectedProject.images[activeIdx].src}
+                        alt={selectedProject.images[activeIdx].alt}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="absolute inset-0 w-full h-full object-cover select-none"
+                        draggable={false}
+                      />
+                    </AnimatePresence>
+                  </motion.div>
 
                   {/* Zoom controls — canto inferior esquerdo */}
-                  <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1">
+                  <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 pointer-events-auto">
                     <button
                       onClick={zoomOut}
                       disabled={zoomLevel <= ZOOM_MIN}
@@ -283,9 +293,9 @@ export function Experience() {
                     </button>
                   </div>
 
-                  {/* Image counter — canto inferior direito */}
+                  {/* Counter — canto inferior direito */}
                   <span
-                    className="absolute bottom-3 right-3 bg-navy/60 text-white text-[0.7rem] px-2 py-0.5 rounded-full backdrop-blur-sm tabular-nums"
+                    className="absolute bottom-3 right-3 z-10 bg-navy/60 text-white text-[0.7rem] px-2 py-0.5 rounded-full backdrop-blur-sm tabular-nums pointer-events-none"
                     aria-hidden
                   >
                     {activeIdx + 1} / {selectedProject.images.length}
@@ -307,12 +317,7 @@ export function Experience() {
                       aria-label={`Imagem ${i + 1} de ${selectedProject.title}`}
                       aria-pressed={i === activeIdx}
                     >
-                      <img
-                        src={img.src}
-                        alt=""
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
+                      <img src={img.src} alt="" className="w-full h-full object-cover" loading="lazy" />
                     </button>
                   ))}
                 </div>
