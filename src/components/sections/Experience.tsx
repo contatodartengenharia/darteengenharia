@@ -183,25 +183,23 @@ export function Experience() {
               aria-hidden
             />
 
-            {/* Panel */}
+            {/* Positioning wrapper — separado do motion para não conflitar com transforms de animação */}
+            <div className={[
+              'fixed z-50',
+              'inset-x-3 top-[4vh] bottom-[4vh]',
+              'md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
+              'md:w-[min(860px,92vw)]',
+            ].join(' ')}>
             <motion.div
               key="gallery-panel"
               role="dialog"
               aria-modal="true"
               aria-label={`Galeria: ${selectedProject.title}`}
-              initial={{ opacity: 0, y: 48, scale: 0.97 }}
+              initial={{ opacity: 0, y: 32, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 48, scale: 0.97 }}
+              exit={{ opacity: 0, y: 32, scale: 0.97 }}
               transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-              className={[
-                'fixed z-50 overflow-y-auto',
-                // Mobile: near-fullscreen
-                'inset-x-3 top-[4vh] bottom-[4vh] rounded-[12px]',
-                // Desktop: centered modal
-                'md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
-                'md:w-[min(860px,92vw)] md:max-h-[88vh]',
-                'bg-white',
-              ].join(' ')}
+              className="h-full md:max-h-[88vh] overflow-y-auto rounded-[12px] bg-white"
             >
               {/* Modal header */}
               <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 bg-navy">
@@ -276,6 +274,7 @@ export function Experience() {
                 </a>
               </div>
             </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
