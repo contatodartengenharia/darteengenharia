@@ -228,17 +228,14 @@ export function Experience() {
             />
 
             {/* Positioning wrapper
-                Mobile: flex-col para que o motion.div (flex-1) preencha os
-                92vh definidos pelos insets — evita área dark do backdrop abaixo.
-                Desktop (md:block): volta ao fluxo normal; altura vira auto. */}
+                z-[110] supera navbar (z-[100]) em todos os breakpoints.
+                Mobile: flex-col + inset-x-3 top/bottom-[4vh] — modal acima do navbar.
+                Desktop (md): inset-auto re-centra; md:z-50 volta ao normal. */}
             <div className={[
               'fixed z-[110] flex flex-col',
-              // mobile: full-screen via longhands (evita conflito shorthand/longhand)
-              'top-0 right-0 bottom-0 left-0',
-              // desktop: modal centrado — sobrescreve cada lado explicitamente
-              'md:block md:z-50 md:w-[min(860px,92vw)]',
-              'md:top-1/2 md:left-1/2 md:right-auto md:bottom-auto',
-              'md:-translate-x-1/2 md:-translate-y-1/2',
+              'inset-x-3 top-[4vh] bottom-[4vh]',
+              'md:block md:z-50 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2',
+              'md:w-[min(860px,92vw)]',
             ].join(' ')}>
 
               <motion.div
@@ -250,7 +247,7 @@ export function Experience() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 32, scale: 0.97 }}
                 transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-                className="flex-1 overflow-y-auto bg-white md:flex-none md:h-auto md:max-h-[78vh] md:rounded-[12px]"
+                className="flex-1 overflow-y-auto rounded-[12px] bg-white md:flex-none md:h-auto md:max-h-[78vh]"
               >
                 {/* Modal header */}
                 <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 bg-navy">
