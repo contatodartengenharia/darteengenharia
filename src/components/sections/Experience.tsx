@@ -2,9 +2,9 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { fadeUp, staggerContainer, scaleIn } from '@/animations/variants'
 import { CONTACT } from '@/data/services'
-import img1 from '@/assets/images/exp-sabor-da-terra.jpg'
-import img2 from '@/assets/images/exp-cobertura-praia-costa.jpg'
-import img3 from '@/assets/images/exp-area-lazer.jpg'
+import img1 from '@/assets/images/experiencia/exp-sabor-da-terra.jpg'
+import img2 from '@/assets/images/experiencia/exp-cobertura-praia-costa.jpg'
+import img3 from '@/assets/images/experiencia/exp-area-lazer.jpg'
 
 const PROJECTS = [
   {
