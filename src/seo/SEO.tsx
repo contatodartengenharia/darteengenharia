@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function SEO({ title, description, ogImage, canonical }: Props) {
-  const fullTitle = `${title} | DARTE Engenharia Civil`
+  const fullTitle = `${title} | D'ARTE Engenharia`
   const baseUrl = 'https://darte.eng.br'
 
   return (
