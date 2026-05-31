@@ -109,6 +109,16 @@
 - Validacoes: `npx.cmd tsc -b` passou; `npm.cmd run build` passou (13.54s, zero erros TypeScript).
 - Nota: PNGs da galeria (cobertura e area-lazer) estao grandes (~1.8-2.2 MB). Conversao para WebP e proxima tarefa de performance.
 
+## Fase 17 - Migracao para Netlify (2026-05-31)
+
+- Repo migrado de `YagoYal/darte-engenharia` para `contatodartengenharia/darteengenharia`.
+- YagoYal adicionado como colaborador (Write) no novo repo.
+- `netlify.toml` criado: build command `npm run build`, publish dir `dist`, redirects SPA.
+- `vercel.json` e `public/_redirects` removidos.
+- Titulo SEO simplificado: `D'ARTE Engenharia` (removido pipe + sufixo variavel).
+- README atualizado: Deploy e DNS trocados de Vercel para Netlify.
+- Commits: `2a6c1f7`, `148b375`, `5fb523e`, `d0a51da`, `83f8103`, `811b30c`.
+
 ## Fase 16 - Protótipo Painel Administrativo (2026-05-29)
 
 - Criado `ProjetoJu/admin-preview.html` — protótipo visual estático do painel adm para apresentação ao cliente.

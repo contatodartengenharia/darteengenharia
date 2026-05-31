@@ -26,9 +26,9 @@
 - [x] Analytics: Google Analytics 4 + Microsoft Clarity (via env vars)
 - [x] Animacoes de entrada (Framer Motion): heroTitle, fadeUp, staggerContainer, scaleIn
 - [x] Imagens WebP responsivas com srcset - hero (768/1280/1920w)
-- [x] Security headers + SPA rewrite + asset caching (`vercel.json`)
+- [x] Security headers + SPA rewrite + asset caching (`netlify.toml`)
 - [x] CSP, HSTS e Honeypot anti-spam
-- [x] Deploy automatico na Vercel via GitHub Actions
+- [x] Deploy automatico no Netlify via GitHub (repo `contatodartengenharia/darteengenharia`)
 - [x] Checagem mobile headless em 390px e 320px sem overflow horizontal
 - [x] Copy de todos os 6 cards de serviços atualizada conforme briefing visual do cliente (description, detail, includes em `src/data/services.ts`)
 - [x] LICENSE adicionado na raiz: uso comercial restrito sem autorização do autor
@@ -41,13 +41,13 @@
 
 Criar conta em formspree.io, criar um form e substituir `SEU_ID` em `ContactForm.tsx` pelo ID gerado. Testar envio end-to-end.
 
-### 2. Variaveis de ambiente reais na Vercel
+### 2. Variaveis de ambiente reais no Netlify
 
-Adicionar `VITE_GA_ID` e `VITE_CLARITY_ID` reais na dashboard da Vercel para ativar analytics em producao.
+Adicionar `VITE_GA_ID` e `VITE_CLARITY_ID` reais na dashboard do Netlify para ativar analytics em producao.
 
 ### 3. Core Web Vitals
 
-Rodar PageSpeed Insights na URL da Vercel e corrigir eventuais regressoes de LCP/CLS apos as novas fotos de Experiencia. Converter fotos da Experiencia para WebP.
+Rodar PageSpeed Insights na URL do Netlify e corrigir eventuais regressoes de LCP/CLS apos as novas fotos de Experiencia. Converter fotos da Experiencia para WebP.
 
 ### 4. Galeria expandida da Experiencia
 
@@ -69,9 +69,9 @@ Rodar PageSpeed Insights na URL da Vercel e corrigir eventuais regressoes de LCP
 - [ ] Integrar formulário de contato com banco (substituir Formspree por Supabase direto ou webhook)
 - [ ] Rota `/admin` protegida no app React
 
-### 6. Migracao para conta profissional
+### 6. DNS e dominio
 
-Apos aprovacao do cliente: migrar repo `darte-engenharia` e projeto Vercel da conta pessoal do Yago para a conta/org profissional.
+Apontar dominio da Hostinger para o Netlify via registros DNS. Configurar dominio customizado no painel do Netlify.
 
 ```md
 # DARTE Engenharia — Escalation Roadmap
