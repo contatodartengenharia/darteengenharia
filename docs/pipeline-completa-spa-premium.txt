@@ -1,0 +1,730 @@
+# PIPELINE COMPLETA — SPA PREMIUM COM STACK MODERNA + FEATURES EQUIVALENTES AO WORDPRESS
+
+# Objetivo
+
+Criar uma SPA premium moderna para engenharia civil usando:
+
+* React
+* Vite
+* TypeScript
+* TailwindCSS
+* Framer Motion
+* Lenis
+
+Substituindo funcionalidades comuns do WordPress de forma moderna, performática e escalável.
+
+O projeto será desenvolvido manualmente e posteriormente hospedado usando:
+
+```txt id="f5l7ad"
+Frontend:
+Vercel
+
+Domínio:
+Hostinger
+```
+
+---
+
+# Arquitetura Recomendada
+
+```txt id="l7aw2s"
+Usuário
+   ↓
+CDN Vercel
+   ↓
+SPA React/Vite
+   ↓
+Integrações Externas
+   ├── Google Analytics
+   ├── Microsoft Clarity
+   ├── Resend
+   ├── Formspree
+   ├── Google Search Console
+   └── CMS futuro (opcional)
+```
+
+---
+
+# Stack Completa
+
+## Core
+
+```bash id="tb6cpx"
+npm create vite@latest
+```
+
+Escolher:
+
+```txt id="fh14qf"
+React
+TypeScript
+```
+
+---
+
+# Dependências Principais
+
+```bash id="17o0ee"
+npm install react-router-dom
+npm install framer-motion
+npm install @studio-freight/lenis
+npm install lucide-react
+npm install clsx
+npm install tailwind-merge
+npm install react-helmet-async
+npm install react-hook-form
+npm install zod
+npm install @hookform/resolvers
+npm install sonner
+npm install axios
+```
+
+---
+
+# Tailwind
+
+```bash id="9qjvvv"
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+---
+
+# Plugins Tailwind
+
+```bash id="f7ln7v"
+npm install -D @tailwindcss/typography
+npm install -D tailwindcss-animate
+```
+
+---
+
+# Estrutura Completa
+
+```txt id="0h7olq"
+src/
+ ├── assets/
+ ├── components/
+ │    ├── ui/
+ │    ├── layout/
+ │    ├── sections/
+ │    ├── cards/
+ │    ├── forms/
+ │    └── animations/
+ ├── pages/
+ ├── hooks/
+ ├── services/
+ ├── integrations/
+ ├── analytics/
+ ├── seo/
+ ├── routes/
+ ├── styles/
+ ├── lib/
+ ├── data/
+ ├── types/
+ ├── App.tsx
+ └── main.tsx
+```
+
+---
+
+# SEO — Equivalente ao WordPress
+
+## Objetivo
+
+Substituir:
+
+* Yoast SEO
+* RankMath
+
+---
+
+# React Helmet Async
+
+## Instalação
+
+```bash id="04d1xy"
+npm install react-helmet-async
+```
+
+---
+
+# SEO Component
+
+## src/seo/SEO.tsx
+
+```tsx id="0n3nh8"
+import { Helmet } from 'react-helmet-async'
+
+type Props = {
+  title: string
+  description: string
+}
+
+export function SEO({ title, description }: Props) {
+  return (
+    <Helmet>
+      <title>{title}</title>
+
+      <meta
+        name=\"description\"
+        content={description}
+      />
+
+      <meta property=\"og:title\" content={title} />
+      <meta property=\"og:description\" content={description} />
+    </Helmet>
+  )
+}
+```
+
+---
+
+# Sitemap Automático
+
+## Instalação
+
+```bash id="7q5d71"
+npm install vite-plugin-sitemap -D
+```
+
+---
+
+# vite.config.ts
+
+```ts id="g8m7r7"
+import { defineConfig } from 'vite'
+import sitemap from 'vite-plugin-sitemap'
+
+export default defineConfig({
+  plugins: [
+    sitemap({
+      hostname: 'https://seudominio.com'
+    })
+  ]
+})
+```
+
+---
+
+# robots.txt
+
+## public/robots.txt
+
+```txt id="3d3hgb"
+User-agent: *
+Allow: /
+
+Sitemap: https://seudominio.com/sitemap.xml
+```
+
+---
+
+# OpenGraph
+
+## Meta padrão
+
+```html id="ml4c29"
+<meta property=\"og:image\" />
+<meta property=\"og:type\" content=\"website\" />
+<meta property=\"twitter:card\" content=\"summary_large_image\" />
+```
+
+---
+
+# Analytics — Equivalente Plugins WP
+
+# Google Analytics 4
+
+## Instalação
+
+```bash id="nvt5zy"
+npm install react-ga4
+```
+
+---
+
+# analytics/google.ts
+
+```ts id="fd4ogw"
+import ReactGA from 'react-ga4'
+
+export function initGA() {
+  ReactGA.initialize('G-XXXXXXXX')
+}
+```
+
+---
+
+# main.tsx
+
+```tsx id="dgk3au"
+initGA()
+```
+
+---
+
+# Tracking de páginas
+
+```ts id="gwwqvv"
+ReactGA.send({
+  hitType: 'pageview',
+  page: window.location.pathname
+})
+```
+
+---
+
+# Microsoft Clarity
+
+## Objetivo
+
+Heatmaps + gravação de sessão.
+
+---
+
+# Integrar script
+
+## index.html
+
+```html id="4g0ejj"
+<script type=\"text/javascript\">
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src=\"https://www.clarity.ms/tag/\"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, \"clarity\", \"script\", \"SEU_ID\");
+</script>
+```
+
+---
+
+# Formulários — Equivalente WPForms
+
+# Stack Recomendada
+
+## Frontend
+
+* React Hook Form
+* Zod
+* Sonner
+
+## Backend de envio
+
+* Resend
+  OU
+* Formspree
+
+---
+
+# React Hook Form
+
+## Instalação
+
+```bash id="09xmsv"
+npm install react-hook-form
+npm install zod
+npm install @hookform/resolvers
+```
+
+---
+
+# Schema
+
+## forms/contact.schema.ts
+
+```ts id="vvqbbm"
+import { z } from 'zod'
+
+export const contactSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  message: z.string().min(10)
+})
+```
+
+---
+
+# Toasts
+
+## Sonner
+
+```bash id="87nm0m"
+npm install sonner
+```
+
+---
+
+# Resend — Melhor solução profissional
+
+# Instalação
+
+```bash id="qjlwm8"
+npm install resend
+```
+
+---
+
+# Backend Node futuro
+
+## Exemplo
+
+```ts id="woj0wv"
+const resend = new Resend(process.env.RESEND_API_KEY)
+```
+
+---
+
+# Alternativa simples — Formspree
+
+## Sem backend
+
+```html id="xvvk66"
+<form action=\"https://formspree.io/f/SEU_ID\" method=\"POST\">
+```
+
+---
+
+# Segurança
+
+# Headers de Segurança
+
+## Vercel
+
+## vercel.json
+
+```json id="2l9ph5"
+{
+  \"headers\": [
+    {
+      \"source\": \"/(.*)\",
+      \"headers\": [
+        {
+          \"key\": \"X-Frame-Options\",
+          \"value\": \"DENY\"
+        },
+        {
+          \"key\": \"X-Content-Type-Options\",
+          \"value\": \"nosniff\"
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+# Variáveis de Ambiente
+
+## .env
+
+```env id="99krpv"
+VITE_GA_ID=
+VITE_CLARITY_ID=
+VITE_RESEND_KEY=
+```
+
+---
+
+# Performance
+
+# Lazy Loading
+
+## React Lazy
+
+```tsx id="0qm0pj"
+const Home = lazy(() => import('./pages/Home'))
+```
+
+---
+
+# Compressão de imagens
+
+## Usar
+
+* WebP
+* AVIF
+
+---
+
+# Biblioteca de imagens
+
+## Recomendado
+
+```bash id="ul2z75"
+npm install sharp
+```
+
+---
+
+# Motion System
+
+# Framer Motion
+
+## Objetivo
+
+Animações:
+
+* suaves
+* premium
+* lentas
+* elegantes
+
+---
+
+# Fade Up
+
+```ts id="r1xyrj"
+export const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 40
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8
+    }
+  }
+}
+```
+
+---
+
+# Smooth Scroll
+
+## Lenis
+
+```ts id="29j34h"
+const lenis = new Lenis({
+  lerp: 0.08
+})
+```
+
+---
+
+# Ícones
+
+## Lucide React
+
+```bash id="9lb3rr"
+npm install lucide-react
+```
+
+---
+
+# Deploy Pipeline
+
+# GitHub
+
+## Fluxo
+
+```txt id="4j9e5r"
+Local
+  ↓
+GitHub
+  ↓
+Vercel
+  ↓
+Deploy automático
+```
+
+---
+
+# Hostinger
+
+# O que ficará nela
+
+* domínio
+* DNS
+* e-mail profissional
+* SSL
+* gerenciamento DNS
+
+---
+
+# Configuração DNS
+
+## Apontar domínio para Vercel
+
+```txt id="l2zjlwm"
+Hostinger DNS
+   ↓
+Vercel Nameservers
+```
+
+---
+
+# O que a Vercel cobre
+
+## Automaticamente
+
+* HTTPS
+* CDN global
+* proteção DDoS
+* cache
+* deploys
+* rollback
+* edge network
+
+---
+
+# Futuro CMS Headless
+
+# WordPress Headless
+
+## Estrutura futura
+
+```txt id="mfkn6z"
+WordPress
+   ↓
+REST API
+   ↓
+Frontend React
+```
+
+---
+
+# Alternativas melhores
+
+* Sanity
+* Strapi
+* Contentful
+* Hygraph
+
+---
+
+# Melhor Arquitetura Final
+
+```txt id="st0q2k"
+Frontend:
+React + Vite
+
+UI:
+TailwindCSS
+
+Motion:
+Framer Motion + Lenis
+
+SEO:
+React Helmet + Sitemap
+
+Analytics:
+GA4 + Clarity
+
+Forms:
+React Hook Form + Resend
+
+Deploy:
+Vercel
+
+Domínio:
+Hostinger
+```
+
+---
+
+# Checklist Final
+
+## UI
+
+* [ ] Hero premium
+* [ ] Motion suave
+* [ ] Responsivo
+* [ ] Glassmorphism leve
+* [ ] Espaçamento refinado
+
+---
+
+# SEO
+
+* [ ] Meta tags
+* [ ] OpenGraph
+* [ ] Sitemap
+* [ ] robots.txt
+
+---
+
+# Analytics
+
+* [ ] GA4
+* [ ] Clarity
+* [ ] Eventos
+
+---
+
+# Forms
+
+* [ ] Validação
+* [ ] Toasts
+* [ ] Anti-spam
+* [ ] Captcha opcional
+
+---
+
+# Performance
+
+* [ ] Lazy loading
+* [ ] Compressão
+* [ ] Lighthouse 90+
+
+---
+
+# Segurança
+
+* [ ] HTTPS
+* [ ] Security Headers
+* [ ] Variáveis ambiente
+* [ ] Proteção DDoS
+* [ ] Sanitização
+
+---
+
+# Prompt Mestre para Claude
+
+```md
+Crie uma SPA premium moderna usando:
+
+- React
+- Vite
+- TypeScript
+- TailwindCSS
+- Framer Motion
+- Lenis
+
+Implemente:
+
+- SEO moderno completo
+- React Helmet Async
+- Sitemap automático
+- robots.txt
+- OpenGraph
+- Google Analytics
+- Microsoft Clarity
+- formulários profissionais
+- React Hook Form
+- Zod
+- Resend/Formspree
+- lazy loading
+- performance otimizada
+- motion design suave
+- arquitetura escalável
+
+O visual deve lembrar:
+- arquitetura premium
+- engenharia boutique
+- editorial sofisticado
+
+Evite:
+- aparência genérica
+- excesso visual
+- animações agressivas
+
+O resultado deve parecer:
+- premium
+- moderno
+- minimalista
+- corporativo elegante
+```

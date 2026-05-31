@@ -30,6 +30,8 @@
 - [x] CSP, HSTS e Honeypot anti-spam
 - [x] Deploy automatico na Vercel via GitHub Actions
 - [x] Checagem mobile headless em 390px e 320px sem overflow horizontal
+- [x] Copy de todos os 6 cards de serviços atualizada conforme briefing visual do cliente (description, detail, includes em `src/data/services.ts`)
+- [x] LICENSE adicionado na raiz: uso comercial restrito sem autorização do autor
 
 ---
 
@@ -59,7 +61,15 @@ Rodar PageSpeed Insights na URL da Vercel e corrigir eventuais regressoes de LCP
 - [x] Zoom in/out (100%–300%) + drag/pan com constraints corretos na galeria.
 - [x] Fix mobile: area navy visivel abaixo do modal (wrapper flex-col + motion.div flex-1).
 
-### 5. Migracao para conta profissional
+### 5. Painel Administrativo (fase futura)
+
+- [x] Protótipo visual criado em `ProjetoJu/admin-preview.html` para apresentação ao cliente
+- [ ] Decidir com cliente: painel personalizado (Supabase + shadcn/ui) ou CMS externo (Sanity)
+- [ ] Se painel personalizado: implementar auth (Supabase Auth), CRUD de serviços, upload de fotos, tabela de leads
+- [ ] Integrar formulário de contato com banco (substituir Formspree por Supabase direto ou webhook)
+- [ ] Rota `/admin` protegida no app React
+
+### 6. Migracao para conta profissional
 
 Apos aprovacao do cliente: migrar repo `darte-engenharia` e projeto Vercel da conta pessoal do Yago para a conta/org profissional.
 

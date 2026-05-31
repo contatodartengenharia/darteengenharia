@@ -109,6 +109,26 @@
 - Validacoes: `npx.cmd tsc -b` passou; `npm.cmd run build` passou (13.54s, zero erros TypeScript).
 - Nota: PNGs da galeria (cobertura e area-lazer) estao grandes (~1.8-2.2 MB). Conversao para WebP e proxima tarefa de performance.
 
+## Fase 16 - Protótipo Painel Administrativo (2026-05-29)
+
+- Criado `ProjetoJu/admin-preview.html` — protótipo visual estático do painel adm para apresentação ao cliente.
+- Telas implementadas: Login, Dashboard, Serviços, Portfólio, Mensagens (Leads).
+- Cores e tipografia seguem os design tokens da DARTE (navy, gold, cream, Cormorant + Montserrat).
+- Fluxo de portfólio: lista de projetos com capa + contador de fotos → tela de detalhe com capa editável + galeria.
+- Galeria: trocar foto individual, remover, adicionar novas (com preview instantâneo via FileReader).
+- Wizard "Novo Projeto" em 3 passos: informações → upload de capa → upload de galeria → card criado na listagem.
+- Mensagens: tabela de leads com status (Nova/Lida/Respondida) + modal de detalhe com botão WhatsApp.
+- Definido que mensagens viriam do formulário do site (React Hook Form → Formspree/Supabase), não do WhatsApp.
+- Discutido precificação: landing base R$800–1.000 + painel adm = pacote R$1.600 (mercado ES).
+- Alternativas de CMS avaliadas: Sanity (free tier viável), Contentful (caro), Formspree (só leads). Conclusão: painel personalizado tem maior diferencial de venda.
+
+## Fase 15 - Copy dos Servicos e LICENSE (2026-05-28)
+
+- Copy completa de todos os 6 cards de servicos atualizada em `src/data/services.ts` conforme briefing visual entregue pelo cliente (6 imagens JPEG de referencia).
+- Alteracoes por servico: description expandida, detail reescrita, includes revisados (alguns ganhou item extra, Regularizacao reduziu de 5 para 4 itens mais enxutos).
+- `LICENSE` criado na raiz: copyright do Yago, proibe uso comercial sem autorizacao por escrito, direciona contato para yagoalcontact@gmail.com.
+- Commits: `1742146` (services copy), `36e201b` (LICENSE) — ambos em `origin/main`.
+
 ## Fase 11 - Copy e Organizacao de Assets (2026-05-20)
 
 - Texto expandido de "Vistoria de Imoveis" atualizado conforme referencia visual enviada pelo cliente.

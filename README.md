@@ -15,7 +15,7 @@ Landing page premium para escritório de engenharia civil, desenvolvida como SPA
 | SEO | React Helmet Async + vite-plugin-sitemap |
 | Formulário | React Hook Form + Zod + Sonner |
 | Analytics | Google Analytics 4 + Microsoft Clarity |
-| Deploy | Vercel |
+| Deploy | Netlify |
 | Domínio | Hostinger |
 
 ## Funcionalidades
@@ -82,11 +82,11 @@ VITE_CLARITY_ID=xxxxxxxxxx     # Microsoft Clarity
 
 ## Deploy
 
-Deploy automático na **Vercel** via integração com GitHub.
+Deploy automático na **Netlify** via integração com GitHub.
 
 - Push para `main` → deploy automático
-- DNS na **Hostinger** apontando para Vercel
-- HTTPS, CDN global e proteção DDoS gerenciados pela Vercel
+- DNS na **Hostinger** apontando para Netlify
+- HTTPS, CDN global e proteção DDoS gerenciados pela Netlify
 
 ---
 
