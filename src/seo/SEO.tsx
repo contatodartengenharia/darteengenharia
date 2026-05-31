@@ -7,8 +7,8 @@ interface Props {
   canonical?: string
 }
 
-export function SEO({ title, description, ogImage, canonical }: Props) {
-  const fullTitle = `${title} | D'ARTE Engenharia`
+export function SEO({ description, ogImage, canonical }: Props) {
+  const fullTitle = ` D'ARTE Engenharia`
   const baseUrl = 'https://darte.eng.br'
 
   return (
